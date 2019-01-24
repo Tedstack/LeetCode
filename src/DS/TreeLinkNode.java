@@ -1,7 +1,7 @@
 package DS;
 
 public class TreeLinkNode {
-    int val;
-    TreeLinkNode left,right,next;
-    TreeLinkNode(int x){val=x;}
+    public int val;
+    public TreeLinkNode left,right,next;
+    public TreeLinkNode(int x){val=x;}
 }

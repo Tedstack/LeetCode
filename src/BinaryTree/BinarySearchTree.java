@@ -1,9 +1,7 @@
 package BinaryTree;
 import DS.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class BinarySearchTree {
     public List<Integer> preOrderTraversal(TreeNode root){
@@ -76,5 +74,17 @@ public class BinarySearchTree {
             wp2.val = wp1.val;
             wp1.val = temp;
         }
+    }
+    //leetcode 98:
+    public boolean isValidBST(TreeNode root) {
+        List<Integer> result=inOrderTraversal(root);
+        int previous=result.get(0);
+        for(int i=1;i<result.size();i++){
+            if(result.get(i)<=previous)
+                return false;
+            else
+                previous=result.get(i);
+        }
+        return true;
     }
 }

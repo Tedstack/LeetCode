@@ -1,7 +1,7 @@
 package Solution;
 import DS.*;
 
-public class leetcode2 {
+public class AddTwoNum {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head=null;
         ListNode p=new ListNode(0);
