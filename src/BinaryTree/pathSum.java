@@ -50,4 +50,45 @@ public class pathSum {
             dfsForall(root.right,sum,cur+root.val);
         this.sol.remove(sol.size()-1);
     }
+
+    int max=Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        if(root==null)
+            return 0;
+        dfsSum(root);
+        return max;
+    }
+
+    public int dfsSum(TreeNode root){
+        if(root==null)
+            return 0;
+        int temp=root.val;
+        int max_left=dfsSum(root.left);
+        int max_right=dfsSum(root.right);
+        if(max_left>0)
+            temp+=max_left;
+        if(max_right>0)
+            temp+=max_right;
+        if(temp>max)
+            max=temp;
+        return Math.max(root.val,Math.max(root.val+max_left,root.val+max_right));
+    }
+    int index=1;
+    int x=0;
+    public int kthSmallest(TreeNode root, int k) {
+        dfs(root,k);
+        return x;
+    }
+    public void dfs(TreeNode root,int k){
+        if(root!=null){
+            dfs(root.left,k);
+            if(index==k){
+                x=root.val;
+                index++;
+                return;
+            }else
+                index++;
+            dfs(root.right,k);
+        }
+    }
 }

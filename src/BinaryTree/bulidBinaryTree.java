@@ -73,4 +73,18 @@ public class bulidBinaryTree {
         root.right=dfPostIn(inorder, postorder,index+1,postIndex-1,len_right);
         return root;
     }
+    public int numTrees(int n) {
+        return DP(1,n);
+    }
+    public int DP(int begin,int end){
+        int count=0;
+        if(end<begin)
+            return 1;
+        for(int i=begin;i<=end;i++){
+            int left=DP(begin,i-1);
+            int right=DP(i+1,end);
+            count+=left*right;
+        }
+        return count;
+    }
 }

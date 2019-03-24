@@ -1,5 +1,9 @@
 package BinaryTree;
 import DS.TreeLinkNode;
+import jdk.nashorn.api.tree.Tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class connectTreeNode {
@@ -28,6 +32,33 @@ public class connectTreeNode {
                         stack.push(cur.left);
                 }
                 last=null;
+            }
+        }
+    }
+    public void queueConnect(TreeLinkNode root){
+        if(root!=null) {
+            Queue<TreeLinkNode> queue = new LinkedList<>();
+            TreeLinkNode cur,head=null,previous=null;
+            queue.offer(root);
+            while(queue.size()!=0){
+                cur=queue.poll();
+                if(head!=null && head==cur){
+                    previous.next=null;
+                    head=null;
+                }else if(previous!=null){
+                    previous.next=cur;
+                }
+                if(cur.left!=null){
+                    queue.offer(cur.left);
+                    if(head==null)
+                        head=cur.left;
+                }
+                if(cur.right!=null){
+                    queue.offer(cur.right);
+                    if(head==null)
+                        head=cur.right;
+                }
+                previous=cur;
             }
         }
     }

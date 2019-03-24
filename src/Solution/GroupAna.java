@@ -16,13 +16,13 @@ public class GroupAna {
             return result;
         }
         for(int i=0;i<strs.length;i++){
-            if(!strs[i].equals("")){
+            if(strs[i]!=null){
                 List<String> sol=new ArrayList<>();
                 sol.add(strs[i]);
                 for(int j=i+1;j<strs.length;j++){
-                    if(!strs[j].equals("") && compareTo(strs[i],strs[j])) {
+                    if(strs[j]!=null && compareTo(strs[i],strs[j])) {
                         sol.add(strs[j]);
-                        strs[j]="";
+                        strs[j]=null;
                     }
                 }
                 result.add(sol);

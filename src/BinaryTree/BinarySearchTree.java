@@ -1,4 +1,5 @@
 package BinaryTree;
+import DS.ListNode;
 import DS.TreeNode;
 
 import java.util.*;
@@ -86,5 +87,29 @@ public class BinarySearchTree {
                 previous=result.get(i);
         }
         return true;
+    }
+    //leetcode 109
+    public TreeNode sortedListToBST(ListNode head) {
+        int count=0;
+        ListNode p=head;
+        while(p!=null){
+            count++;
+            p=p.next;
+        }
+        return dfs(head,count);
+    }
+    private TreeNode dfs(ListNode head,int size){
+        if(head==null || size==0)
+            return null;
+        TreeNode root=new TreeNode(0);
+        int left_size=size/2;
+        int right_size=size-left_size-1;
+        root.left=dfs(head,left_size);
+        ListNode p=head;
+        for(int i=0;i<size;i++)
+            p=p.next;
+        root.val=p.val;
+        root.right=dfs(p.next,right_size);
+        return root;
     }
 }
