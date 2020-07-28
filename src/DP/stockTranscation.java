@@ -2,7 +2,7 @@ package DP;
 
 public class stockTranscation {
     //only one transaction
-    public int maxProfit(int[] prices) {
+    public int  maxProfit(int[] prices) {
         if(prices.length==0 || prices.length==1)
             return 0;
         int minPrice=prices[0],profit=0;
@@ -29,6 +29,37 @@ public class stockTranscation {
         }
         return profit;
     }
+
+    public int maxProfitTwoTrans(int[] prices){
+        if(prices.length==0 || prices.length==1)
+            return 0;
+        int[] leftMax=new int[prices.length];
+        int[] rightMax=new int[prices.length];
+        int minPrice = prices[0];
+        for(int i=1;i<prices.length;i++){
+            if(prices[i]<minPrice){
+                minPrice=prices[i];
+                leftMax[i]=leftMax[i-1];
+            } else{
+                leftMax[i]=Math.max(leftMax[i-1],prices[i]-minPrice);
+            }
+        }
+        int maxPrice=prices[prices.length-1];
+        for(int i=prices.length-2;i>=0;i--){
+            if(prices[i]>maxPrice){
+                maxPrice=prices[i];
+                rightMax[i]=rightMax[i+1];
+            }else{
+                rightMax[i]=Math.max(rightMax[i+1],maxPrice-prices[i]);
+            }
+        }
+        int res=rightMax[0];
+        for(int i=1;i<prices.length-2;i++){
+            res = Math.max(res,leftMax[i]+rightMax[i+1]);
+        }
+        return res;
+    }
+
     public int maxProfitCoolDown(int[] prices) {
         if(prices.length==0 || prices.length==1)
             return 0;

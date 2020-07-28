@@ -6,9 +6,9 @@ public class MaxSubarray {
             return 0;
         int localMax=nums[0];
         int globalMax=nums[0];
-        for(int i=1;i<nums.length;i++){
-            localMax=Math.max(localMax+nums[i],nums[i]);
-            globalMax=Math.max(globalMax,localMax);
+        for(int i=1;i<nums.length;i++) {
+            localMax = Math.max(localMax + nums[i], nums[i]);
+            globalMax = Math.max(globalMax, localMax);
         }
         return globalMax;
     }

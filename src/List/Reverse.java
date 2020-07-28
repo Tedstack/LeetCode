@@ -2,7 +2,7 @@ package List;
 
 import DS.ListNode;
 
-public class Reverse {
+public class   Reverse {
     public ListNode reverseList(ListNode head) {
         ListNode p=null;
         while(head!=null){
@@ -49,5 +49,47 @@ public class Reverse {
             p.next=endnext;
             return p;
         }
+    }
+
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode p,q;
+        p=head;
+        q=p;
+        while(p!=null && p.next!=null){
+            if(p.val==p.next.val){
+                ListNode temp=p;
+                while(temp.next!=null && temp.val==temp.next.val)
+                    temp=temp.next;
+                if(p==head){
+                    head=temp.next;
+                    p=head;
+                }else{
+                    q.next=temp.next;
+                    p=temp.next;
+                    temp.next=null;
+                }
+            }else {
+                q = p;
+                p = p.next;
+            }
+        }
+        return head;
+    }
+
+    public ListNode deleteDuplicatesII(ListNode head) {
+        ListNode p=head;
+        while(p!=null && p.next!=null){
+            if(p.val==p.next.val){
+                ListNode temp=p;
+                while(temp.next!=null && temp.val==temp.next.val)
+                    temp=temp.next;
+                p.next=temp.next;
+                p=temp.next;
+                temp.next=null;
+            }else{
+                p=p.next;
+            }
+        }
+        return head;
     }
 }

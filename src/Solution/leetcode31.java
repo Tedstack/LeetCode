@@ -2,7 +2,7 @@ package Solution;
 /*Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.*/
 public class leetcode31 {
     public void nextPermutation(int[] nums) {
-        int index=nums.length-1,temp=0;
+        int index=nums.length-1;
         while(index>0){
             if(nums[index-1]<nums[index])
                 break;
@@ -10,16 +10,17 @@ public class leetcode31 {
         }
         if(index==0){
             reverseArray(nums,0,nums.length-1);
-        }else{
-            int target=index-1;
-            for(;index<nums.length;index++){
-                if(nums[target]>=nums[index])
+        } else {
+            int target = index - 1;
+            reverseArray(nums,index,nums.length-1);
+            for(int i = index;i<nums.length;i++){
+                if(nums[i]>nums[target]){
+                    int temp = nums[i];
+                    nums[i] = nums[target];
+                    nums[target] = temp;
                     break;
+                }
             }
-            temp=nums[target];
-            nums[target]=nums[index-1];
-            nums[index-1]=temp;
-            reverseArray(nums,target+1,nums.length-1);
         }
     }
     private void reverseArray(int[] nums,int start,int end){
